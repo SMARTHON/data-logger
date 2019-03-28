@@ -150,6 +150,7 @@ namespace Plant {
     //% block="Set Motor fan anti-clockwisely to intensity %intensity"
     //% intensity.min=0 intensity.max=1023
     //% weight=70
+	//% blockGap=7	
 	
     export function TurnMotorACW(intensity: number): void {
 			
@@ -166,16 +167,25 @@ namespace Plant {
 		pins.servoWritePin(AnalogPin.P2, intensity)
     }
 	
-			
-	//% blockId="smarthon_plantled"
-    //% block="Set LED to intensity %intensity"
-    //% intensity.min=0 intensity.max=1023
-    //% weight=44
-	//%subcategory=More
-	
-    export function TurnLED(intensity: number): void {
-			
-		pins.analogWritePin(AnalogPin.P0, intensity);
+	// -------------- 1. WiFi ----------------
+    //% blockId=smarthon_set_wifi
+	//% block="Set wifi to ssid %ssid| pwd %pwd"   
+	//% weight=45
+	//%subcategory=More	
+    export function setWifi(ssid: string, pwd: string): void {
+        serial.writeLine("(AT+wifi?ssid="+ssid+"&pwd="+pwd+")"); 
     }
+
+	// -------------- 2. Cloud ----------------
+    //% blockId=smarthon_set_thingspeak
+	//% block="Send Thingspeak key* %key|field1 %field1|field2 %field2|field3 %field3"
+	//% weight=44
+	//% blockGap=7
+	//%subcategory=More
+    export function sendThingspeak(key: string, field1: number, field2: number, field3: number): void {
+        serial.writeLine("(AT+thingspeak?key=" + key+"&field1="+field1+"&field2="+field2+"&field3="+field3+")"); 
+    }
+	
+	
 
 }
