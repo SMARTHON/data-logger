@@ -8,7 +8,7 @@ namespace Plant {
 	
     // -------------- 1. Initialization ----------------
     //%blockId=initialize
-    //%block="Initialize Smarthon multiple-sensor"
+    //%block="Initialize Smarthon Data logger"
     //% weight=90	
     export function initializeWifi(): void {
         serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate9600);
@@ -50,7 +50,8 @@ namespace Plant {
 
     //% blockId="smarthon_get_light" 
     //% block="Get light (Lx)"
-    //% weight=80	
+    //% weight=80
+	//% blockGap=7		
 
     export function getLight(): number {
         return light_variable;
@@ -59,6 +60,7 @@ namespace Plant {
     //% blockId="smarthon_get_temperature" 
     //% block="Get temperature (°C)"
     //% weight=79
+	//% blockGap=7	
 
     export function getTemperature(): number {
         return temperature_variable;
@@ -67,6 +69,7 @@ namespace Plant {
 	//% blockId="smarthon_get_pressure" 
     //% block="Get pressure (hPa)"
     //% weight=78	
+	//% blockGap=7	
 
     export function getPressure(): number {
         return pressure_variable;
@@ -75,6 +78,7 @@ namespace Plant {
 	//% blockId="smarthon_get_altitude" 
     //% block="Get altitude (m)"
     //% weight=77	
+	//% blockGap=7	
 
     export function getAltitude(): number {
         return altitude_variable;
@@ -83,6 +87,7 @@ namespace Plant {
 	//% blockId="smarthon_get_humidity" 
     //% block="Get humidity"
     //% weight=76	
+	//% blockGap=7	
 
     export function getHumidity(): number {
         return humidity_variable;
@@ -99,8 +104,7 @@ namespace Plant {
 	//% blockId="smarthon_usb"
     //% block="Set LED grow light to intensity %intensity"
     //% intensity.min=0 intensity.max=1023
-    //% weight=50	
-	//%subcategory=More
+    //% weight=74	
 	//% blockGap=7	
 	
     export function TurnUSB(intensity: number): void {
@@ -111,8 +115,7 @@ namespace Plant {
 	//% blockId="smarthon_waterpump"
     //% block="Set Water pump to intensity %intensity"
     //% intensity.min=0 intensity.max=1023
-    //% weight=49
-	//%subcategory=More
+    //% weight=73
 	//% blockGap=7	
 	
     export function TurnWaterpump(intensity: number): void {
@@ -123,8 +126,7 @@ namespace Plant {
 	//% blockId="smarthon_humdifier"
     //% block="Set Humdifier to intensity %intensity"
     //% intensity.min=0 intensity.max=1023
-    //% weight=48	
-	//%subcategory=More
+    //% weight=72	
 	//% blockGap=7	
 	
     export function TurnHumdifier(intensity: number): void {
@@ -136,8 +138,7 @@ namespace Plant {
 	//% blockId="smarthon_plantmotorfan_cw"
     //% block="Set Motor fan clockwisely to intensity %intensity"
     //% intensity.min=0 intensity.max=1023
-    //% weight=47	
-	//%subcategory=More
+    //% weight=71	
 	//% blockGap=7	
 	
     export function TurnMotorCW(intensity: number): void {
@@ -148,8 +149,7 @@ namespace Plant {
 	//% blockId="smarthon_plantmotorfan_acw"
     //% block="Set Motor fan anti-clockwisely to intensity %intensity"
     //% intensity.min=0 intensity.max=1023
-    //% weight=46
-	//%subcategory=More
+    //% weight=70
 	
     export function TurnMotorACW(intensity: number): void {
 			
@@ -159,9 +159,7 @@ namespace Plant {
 	//% blockId="smarthon_plantservo"
     //% block="Set Servo to degree %degree"
     //% intensity.min=0 intensity.max=180
-    //% weight=45	
-	//%subcategory=More
-	//% blockGap=7	
+    //% weight=69	
 	
     export function TurnServo(intensity: number): void {
 			
