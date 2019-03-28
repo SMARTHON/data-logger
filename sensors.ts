@@ -8,7 +8,7 @@ namespace Plant {
 	
     // -------------- 1. Initialization ----------------
     //%blockId=initialize
-    //%block="Initialize Smarthon Data logger"
+    //%block="Initialize SMARTHON DATA LOGGER"
     //% weight=90	
     export function initializeWifi(): void {
         serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate9600);
@@ -186,6 +186,25 @@ namespace Plant {
         serial.writeLine("(AT+thingspeak?key=" + key+"&field1="+field1+"&field2="+field2+"&field3="+field3+")"); 
     }
 	
+	// -------------- 3. Connect Azure Cloud ----------------
+    //% blockId=smarthon_connect_azure
+	//% block="Connect Microsoft Azure IoT Central Scope ID %scopeid|Device ID %deviceid|Primary Key %primarykey"
+	//% weight=43
+	//% blockGap=7
+	//%subcategory=More
+    export function connectAzure(scopeid: string, deviceid: string, primarykey: string): void {
+        serial.writeLine("(AT+connectAzure?scopeid=" + scopeid+"&deviceid="+deviceid+"&primarykey="+primarykey+")"); 
+    }
+	
+	// -------------- 4. Upload data to Azure Cloud ----------------
+    //% blockId=smarthon_upload_azure
+	//% block="Upload data to Microsoft Azure IoT Central field1 %field1|field2 %field2|field3 %field3|field4 %field4|field5 %field5"
+	//% weight=42
+	//% blockGap=7
+	//%subcategory=More
+    export function uploadDataAzure(field1: number, field2: number, field3: number, field4: number, field5: number): void {
+        serial.writeLine("(AT+uploadAzure?field1=" + field1+"&field2="+field2+"&field3="+field3+"&field4="+field4+"&field5="+field5+")"); 
+    }
 	
 
 }
