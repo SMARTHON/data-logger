@@ -1,4 +1,8 @@
 namespace Plant {    
+
+	//BH1750
+	pins.i2cWriteNumber(35, 0x10, NumberFormat.UInt8BE)
+	
     let light_variable = 0
     let temperature_variable = 0
 	let pressure_variable = 0
@@ -47,14 +51,17 @@ namespace Plant {
 
         basic.pause(5000);
     }
-
+	
+	/**
+     * get ambient light data (lx)
+     */
     //% blockId="smarthon_get_light" 
-    //% block="Get light (Lx)"
+    //% block="Get light intensity (Lx)"
     //% weight=80
 	//% blockGap=7		
 
     export function getLight(): number {
-        return light_variable;
+        return Math.idiv(pins.i2cReadNumber(35, NumberFormat.UInt16BE) * 5, 6)
     }
 
     //% blockId="smarthon_get_temperature" 
