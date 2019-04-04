@@ -166,7 +166,7 @@ namespace Plant {
     //%block="Initialize SMARTHON DATA LOGGER"
     //% weight=90	
     export function initializeWifi(): void {
-        serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate9600);
+        serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate115200);
 
         serial.onDataReceived(serial.delimiters(Delimiters.NewLine), () => {
             let temp = serial.readLine()
@@ -176,11 +176,11 @@ namespace Plant {
                 soilMoisture_variable = parseInt(temp.substr(1, temp.length-2))
 
             } else {
-                basic.showString(temp)
+                //basic.showString(temp)
             }
         })
 
-        basic.pause(5000);
+        //basic.pause(5000);
     }
 	
 	/**
@@ -302,7 +302,7 @@ namespace Plant {
 	//% weight=45
 	//%subcategory=More	
     export function setWifi(ssid: string, pwd: string): void {
-        serial.writeLine("(AT+wifi?ssid="+ssid+"&pwd="+pwd+")"); 
+        serial.writeLine("AT+wifi?ssid="+ssid+"&pwd="+pwd+""); 
     }
 
 	// -------------- 2. Cloud ----------------
@@ -312,7 +312,7 @@ namespace Plant {
 	//% blockGap=7
 	//%subcategory=More
     export function sendThingspeak(key: string, field1: number, field2: number, field3: number): void {
-        serial.writeLine("(AT+thingspeak?key=" + key+"&field1="+field1+"&field2="+field2+"&field3="+field3+")"); 
+        serial.writeLine("AT+thingspeak?key=" + key+"&field1="+field1+"&field2="+field2+"&field3="+field3+""); 
     }
 	
 	// -------------- 3. Connect Azure Cloud ----------------
@@ -322,7 +322,7 @@ namespace Plant {
 	//% blockGap=7
 	//%subcategory=More
     export function connectAzure(scopeid: string, deviceid: string, primarykey: string): void {
-        serial.writeLine("(AT+connectAzure?scopeid=" + scopeid+"&deviceid="+deviceid+"&primarykey="+primarykey+")"); 
+        serial.writeLine("AT+connectAzure?scopeid=" + scopeid+"&deviceid="+deviceid+"&primarykey="+primarykey+""); 
     }
 	
 	// -------------- 4. Upload data to Azure Cloud ----------------
@@ -332,7 +332,7 @@ namespace Plant {
 	//% blockGap=7
 	//%subcategory=More
     export function uploadDataAzure(field1: number, field2: number, field3: number, field4: number, field5: number): void {
-        serial.writeLine("(AT+uploadAzure?field1=" + field1+"&field2="+field2+"&field3="+field3+"&field4="+field4+"&field5="+field5+")"); 
+        serial.writeLine("AT+uploadAzure?field1=" + field1+"&field2="+field2+"&field3="+field3+"&field4="+field4+"&field5="+field5+""); 
     }
 	
 
