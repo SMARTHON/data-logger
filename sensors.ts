@@ -187,7 +187,7 @@ namespace Plant {
      * get ambient light data (lx)
      */
     //% blockId="smarthon_get_light" 
-    //% block="Get light intensity (Lx)"
+    //% block="Get Light intensity (Lx)"
     //% weight=80
 	//% blockGap=7		
 
@@ -196,7 +196,7 @@ namespace Plant {
     }
 
     //% blockId="smarthon_get_temperature" 
-    //% block="Get temperature (°C)"
+    //% block="Get Temperature (°C)"
     //% weight=79
 	//% blockGap=7	
 
@@ -205,7 +205,7 @@ namespace Plant {
     }
 	
 	//% blockId="smarthon_get_pressure" 
-    //% block="Get pressure (hPa)"
+    //% block="Get Pressure (hPa)"
     //% weight=78	
 	//% blockGap=7	
 
@@ -214,7 +214,7 @@ namespace Plant {
     }
 	
 	//% blockId="smarthon_get_humidity" 
-    //% block="Get humidity"
+    //% block="Get Humidity (percentage)"
     //% weight=76	
 	//% blockGap=7	
 
@@ -223,7 +223,7 @@ namespace Plant {
     }
 	
 	//% blockId="smarthon_get_soilmoisture" 
-    //% block="Get soil moisture"
+    //% block="Get Soil moisture (percentage)"
     //% weight=75	
 
     export function getSoilmoisture(): number {
