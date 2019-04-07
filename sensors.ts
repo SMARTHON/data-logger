@@ -302,7 +302,7 @@ namespace Plant {
 	//% weight=45
 	//%subcategory=More	
     export function setWifi(ssid: string, pwd: string): void {
-        serial.writeLine("AT+wifi?ssid="+ssid+"&pwd="+pwd); 
+        serial.writeLine("(AT+wifi?ssid="+ssid+"&pwd="+pwd+")"); 
     }
 
 	// -------------- 2. Cloud ----------------
@@ -312,7 +312,7 @@ namespace Plant {
 	//% blockGap=7
 	//%subcategory=More
     export function sendThingspeak(key: string, field1: number, field2: number, field3: number): void {
-        serial.writeLine("AT+thingspeak?key=" + key+"&field1="+field1+"&field2="+field2+"&field3="+field3); 
+        serial.writeLine("(AT+thingspeak?key=" + key+"&field1="+field1+"&field2="+field2+"&field3="+field3+")"); 
     }
 	
 	// -------------- 3. Connect Azure Cloud ----------------
@@ -322,7 +322,7 @@ namespace Plant {
 	//% blockGap=7
 	//%subcategory=More
     export function connectAzure(scopeid: string, deviceid: string, primarykey: string): void {
-        serial.writeLine("AT+connectAzure?scopeid=" + scopeid+"&deviceid="+deviceid+"&primarykey="+primarykey); 
+        serial.writeLine("(AT+connectAzure?scopeid=" + scopeid+"&deviceid="+deviceid+"&primarykey="+primarykey+")"); 
     }
 	
 	// -------------- 4. Upload data to Azure Cloud ----------------
@@ -332,7 +332,7 @@ namespace Plant {
 	//% blockGap=7
 	//%subcategory=More
     export function uploadDataAzure(field1: number, field2: number, field3: number, field4: number, field5: number): void {
-        serial.writeLine("AT+uploadAzure?field1=" + field1+"&field2="+field2+"&field3="+field3+"&field4="+field4+"&field5="+field5); 
+        serial.writeLine("(AT+uploadAzure?field1=" + field1+"&field2="+field2+"&field3="+field3+"&field4="+field4+"&field5="+field5+")"); 
     }
 	
 
