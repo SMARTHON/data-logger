@@ -180,7 +180,7 @@ namespace Plant {
             }
         })
 
-        //basic.pause(5000);
+        basic.pause(5000);
     }
 	
 	/**
