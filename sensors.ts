@@ -274,6 +274,7 @@ namespace Plant {
 			
 		//pins.analogWritePin(AnalogPin.P13, intensity);
 		serial.writeLine("(AT+pwm?pin=2&intensity="+number+")"); 
+		basic.pause(1000);
     }
 	
 	//% blockId="smarthon_plantmotorfan_acw"
@@ -286,6 +287,7 @@ namespace Plant {
 			
 		//pins.analogWritePin(AnalogPin.P14, intensity);
 		serial.writeLine("(AT+pwm?pin=0&intensity="+number+")");
+		basic.pause(1000);
     }
 	
 	//% blockId="smarthon_plantservo"
