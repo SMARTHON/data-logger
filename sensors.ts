@@ -259,7 +259,7 @@ namespace Plant {
 	//% blockGap=7	
 	
     export function TurnHumdifier(intensity: number): void {
-			
+		
 		pins.analogWritePin(AnalogPin.P15, intensity);
     }
 	
@@ -272,7 +272,8 @@ namespace Plant {
 	
     export function TurnMotorCW(intensity: number): void {
 			
-		pins.analogWritePin(AnalogPin.P13, intensity);
+		//pins.analogWritePin(AnalogPin.P13, intensity);
+		serial.writeLine("(AT+pwm?pin=2&intensity="+number+")"); 
     }
 	
 	//% blockId="smarthon_plantmotorfan_acw"
@@ -283,7 +284,8 @@ namespace Plant {
 	
     export function TurnMotorACW(intensity: number): void {
 			
-		pins.analogWritePin(AnalogPin.P14, intensity);
+		//pins.analogWritePin(AnalogPin.P14, intensity);
+		serial.writeLine("(AT+pwm?pin=0&intensity="+number+")");
     }
 	
 	//% blockId="smarthon_plantservo"

@@ -1,6 +1,6 @@
 {
     "name": "pxt-data-logger",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "description": "This is the extension for SMARTHON Plant Kit WiFi in PXT",
     "license": "MIT",
     "dependencies": {
