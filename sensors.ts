@@ -273,7 +273,7 @@ namespace Plant {
     export function TurnMotorCW(intensity: number): void {
 			
 		//pins.analogWritePin(AnalogPin.P13, intensity);
-		serial.writeLine("(AT+pwm?pin=2&intensity="+number+")"); 
+		serial.writeLine("(AT+pwm?pin=2&intensity="+intensity+")"); 
 		basic.pause(1000);
     }
 	
@@ -286,7 +286,7 @@ namespace Plant {
     export function TurnMotorACW(intensity: number): void {
 			
 		//pins.analogWritePin(AnalogPin.P14, intensity);
-		serial.writeLine("(AT+pwm?pin=0&intensity="+number+")");
+		serial.writeLine("(AT+pwm?pin=0&intensity="+intensity+")");
 		basic.pause(1000);
     }
 	
