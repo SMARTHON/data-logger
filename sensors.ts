@@ -165,10 +165,13 @@ namespace Plant {
 	
 	// -------------- A. SD Card Initialization ----------------
     //%blockId=initialize_sdcard
-    //%block="Initialize Data Logger [Offline mode - SD Card]"
+    //%block="Initialize Data Logger [Offline mode - SD Card and OLED]"
     //% weight=91	
 	//% blockGap=7
-    export function initialize_sdcard(): void {        		
+    export function initialize_sdcard(): void {   
+		OLED.init(64, 128)	
+		OLED.showStringWithNewLine("Offline mode - SD card")
+		
 		serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate9600);		
     }
 	
@@ -191,9 +194,12 @@ namespace Plant {
 	
 	// -------------- C. Serial USB Initialization ----------------
     //%blockId=initialize_serial
-    //%block="Initialize Data Logger [Computer mode - Read by serial USB]"
+    //%block="Initialize Data Logger [Computer mode (Read by serial USB) - OLED]"
     //% weight=89
-    export function initialize_serial(): void {        		
+    export function initialize_serial(): void {  
+		OLED.init(64, 128)	
+		OLED.showStringWithNewLine("Computer mode - USB")
+		
 		serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate115200);		
     }
 	
