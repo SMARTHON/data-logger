@@ -357,7 +357,8 @@ namespace Plant {
     //% blockGap=7
     //%subcategory=More
     export function writeSdCard(field1: number, field2: number, field3: number): void {
-        serial.writeLine(input.runningTime() / 1000 + "," + field1.toString() + "," + field2.toString() + "," + field3.toString()); 
+        serial.writeLine("Time,Field1,Field2,Field3"); 
+		serial.writeLine(input.runningTime() / 1000 + "," + field1.toString() + "," + field2.toString() + "," + field3.toString()); 
     }
 	
 	// -------------- 6. Write data to serial ----------------
