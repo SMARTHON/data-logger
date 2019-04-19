@@ -1,10 +1,11 @@
 {
     "name": "pxt-data-logger",
-    "version": "1.2.6",
+    "version": "1.3.0",
     "description": "This is the extension for SMARTHON Plant Kit WiFi in PXT",
     "license": "MIT",
     "dependencies": {
-        "core": "*"		
+        "core": "*",
+		"SSD1306_OLED": "github:tinkertanker/pxt-oled-ssd1306#v1.2.6"		
     },
     "files": [
         "README.md",

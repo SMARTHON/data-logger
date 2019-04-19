@@ -166,19 +166,13 @@ namespace Plant {
     //%block="Initialize SMARTHON DATA LOGGER"
     //% weight=90	
     export function initializeWifi(): void {
-        serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate115200);
-
-        serial.onDataReceived(serial.delimiters(Delimiters.NewLine), () => {
-            let temp = serial.readLine()
-
-			if (temp.charAt(0).compare("S") == 0) {
-
-                soilMoisture_variable = parseInt(temp.substr(1, temp.length-2))
-
-            } else {
-                //basic.showString(temp)
-            }
-        })
+        OLED.init(64, 128)
+		
+		serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate115200);
+		
+		serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
+			OLED.showStringWithNewLine(serial.readLine())
+		})
 
         basic.pause(5000);
     }
