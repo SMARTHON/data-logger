@@ -188,7 +188,7 @@ namespace Plant {
 	// -------------- C. Serial USB Initialization ----------------
     //%blockId=initialize_serial
     //%block="Initialize Data Logger [Computer mode - Read by serial USB]"
-    //% weight=91	
+    //% weight=89
     export function initialize_sdcard(): void {        		
 		serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate115200);		
     }
