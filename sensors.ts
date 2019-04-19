@@ -170,7 +170,7 @@ namespace Plant {
 	//% blockGap=7
     export function initialize_sdcard(): void {   
 		OLED.init(64, 128)	
-		OLED.showStringWithNewLine("Offline mode - SD card")
+		OLED.showStringWithNewLine("Offline mode")
 		
 		serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate9600);		
     }
@@ -198,7 +198,7 @@ namespace Plant {
     //% weight=89
     export function initialize_serial(): void {  
 		OLED.init(64, 128)	
-		OLED.showStringWithNewLine("Computer mode - USB")
+		OLED.showStringWithNewLine("Computer mode")
 		
 		serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate115200);		
     }
