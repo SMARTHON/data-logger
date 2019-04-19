@@ -176,12 +176,12 @@ namespace Plant {
     //% weight=90	
 	//% blockGap=7
     export function initializeWifi(): void {
-        OLED.init(64, 128)
+        //OLED.init(64, 128)
 		
 		serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate115200);
 		
 		serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
-			OLED.showStringWithNewLine(serial.readLine())
+			//OLED.showStringWithNewLine(serial.readLine())
 		})
 
         basic.pause(5000);
@@ -344,11 +344,30 @@ namespace Plant {
 	// -------------- 4. Upload data to Azure Cloud ----------------
     //% blockId=smarthon_upload_azure
 	//% block="Upload data to Microsoft Azure IoT Central field1 %field1|field2 %field2|field3 %field3|field4 %field4|field5 %field5"
-	//% weight=42
-	//% blockGap=7
+	//% weight=42	
 	//%subcategory=More
     export function uploadDataAzure(field1: number, field2: number, field3: number, field4: number, field5: number): void {
         serial.writeLine("(AT+uploadAzure?field1=" + field1+"&field2="+field2+"&field3="+field3+"&field4="+field4+"&field5="+field5+")"); 
+    }
+
+    // -------------- 5. Write data to SD card ----------------
+    //% blockId=smarthon_write_sdcard
+    //% block="Write data to SD card field 1 %field1|field2 %field2|field3 %field3"
+    //% weight=41
+    //% blockGap=7
+    //%subcategory=More
+    export function writeSdCard(field1: number, field2: number, field3: number): void {
+        serial.writeLine(input.runningTime() / 1000 + "," + field1.toString() + "," + field2.toString() + "," + field3.toString()); 
+    }
+	
+	// -------------- 6. Write data to serial ----------------
+    //% blockId=smarthon_write_serial
+    //% block="Write data to computer via serial USB field 1 %field1|field2 %field2|field3 %field3"
+    //% weight=40
+    //% blockGap=7
+    //%subcategory=More
+    export function writeSerial(field1: number, field2: number, field3: number): void {
+        serial.writeLine(input.runningTime() / 1000 + "," + field1.toString() + "," + field2.toString() + "," + field3.toString()); 
     }
 	
 
