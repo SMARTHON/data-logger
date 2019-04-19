@@ -161,13 +161,15 @@ namespace Plant {
 	
 	let soilMoisture_variable = 0
 	
+	let sdcard_flag = false
+	
 	// -------------- A. SD Card Initialization ----------------
     //%blockId=initialize_sdcard
     //%block="Initialize Data Logger [Offline mode - SD Card]"
     //% weight=91	
 	//% blockGap=7
     export function initialize_sdcard(): void {        		
-		serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate115200);		
+		serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate9600);		
     }
 	
     // -------------- B. WiFi Initialization ----------------
@@ -176,12 +178,12 @@ namespace Plant {
     //% weight=90	
 	//% blockGap=7
     export function initializeWifi(): void {
-        //OLED.init(64, 128)
+        OLED.init(64, 128)
 		
 		serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate115200);
 		
 		serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
-			//OLED.showStringWithNewLine(serial.readLine())
+			OLED.showStringWithNewLine(serial.readLine())
 		})
 
         basic.pause(5000);
@@ -357,7 +359,12 @@ namespace Plant {
     //% blockGap=7
     //%subcategory=More
     export function writeSdCard(field1: number, field2: number, field3: number): void {
-        serial.writeLine("Time,Field1,Field2,Field3"); 
+		
+		if(!sdcard_flag){
+			serial.writeLine("Time,Field1,Field2,Field3"); 
+			sdcard_flag = true
+		}
+		
 		serial.writeLine(input.runningTime() / 1000 + "," + field1.toString() + "," + field2.toString() + "," + field3.toString()); 
     }
 	
