@@ -161,9 +161,17 @@ namespace Plant {
 	
 	let soilMoisture_variable = 0
 	
-    // -------------- 1. Initialization ----------------
-    //%blockId=initialize
-    //%block="Initialize SMARTHON DATA LOGGER"
+	// -------------- A. SD Card Initialization ----------------
+    //%blockId=initialize_sdcard
+    //%block="Initialize Data Logger [Offline mode - SD Card]"
+    //% weight=91	
+    export function initialize_sdcard(): void {        		
+		serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate115200);		
+    }
+	
+    // -------------- B. WiFi Initialization ----------------
+    //%blockId=initialize_wifi
+    //%block="Initialize Data Logger [Online mode - WiFi module and OLED]"
     //% weight=90	
     export function initializeWifi(): void {
         OLED.init(64, 128)
@@ -175,6 +183,14 @@ namespace Plant {
 		})
 
         basic.pause(5000);
+    }
+	
+	// -------------- C. Serial USB Initialization ----------------
+    //%blockId=initialize_serial
+    //%block="Initialize Data Logger [Computer mode - Read by serial USB]"
+    //% weight=91	
+    export function initialize_sdcard(): void {        		
+		serial.redirect(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate115200);		
     }
 	
 	/**
