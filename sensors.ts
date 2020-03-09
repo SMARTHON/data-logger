@@ -1,5 +1,9 @@
 namespace Plant {    
 
+    type EvtAct = () => void;
+    let Plant_IOT_Conn: EvtAct = null;
+	let IOT_cmd = ""
+	
 	// BH1750
 	pins.i2cWriteNumber(35, 0x10, NumberFormat.UInt8BE)
 	
@@ -353,15 +357,58 @@ namespace Plant {
     //% blockId=smarthon_upload_azure
 	//% block="Upload data to Microsoft Azure IoT Central field1 %field1|field2 %field2|field3 %field3|field4 %field4|field5 %field5"
 	//% weight=42	
+	//% blockGap=7	
 	//%subcategory=More
     export function uploadDataAzure(field1: number, field2: number, field3: number, field4: number, field5: number): void {
         serial.writeLine("(AT+uploadAzure?field1=" + field1+"&field2="+field2+"&field3="+field3+"&field4="+field4+"&field5="+field5+")"); 
     }
 
+
+
+
+    //%blockId=smarthon_on_azure_cmd_receive
+    //%block="On Azure command received"
+    //% weight=40
+	//%subcategory=More
+    //% blockGap=7		
+    export function on_Azure_cmd_recieved(handler: () => void): void {
+		//if (Plant_IOT_Conn) Plant_IOT_Conn()
+        Plant_IOT_Conn = handler;
+    }
+
+
+	
+    //%blockId=smarthon_azure_command
+    //%block="Azure command"
+    //% weight=35
+	//%subcategory=More
+    //% blockGap=7		
+    export function Azure_command(): string {
+
+        return IOT_cmd;
+
+    }
+
+
+
+	//%blockId=smarthon_azure_command_intensity
+    //%block="Azure command intensity"
+    //% weight=30
+	//%subcategory=More
+    export function Azure_command_intensity(): string {
+
+        return IOT_cmd;
+
+    }
+
+
+
+
+
     // -------------- 5. Write data to SD card ----------------
     //% blockId=smarthon_write_sdcard
     //% block="Write data to SD card field 1 %field1|field2 %field2|field3 %field3"
-    //% weight=41
+    //% weight=25
     //% blockGap=7
     //%subcategory=More
     export function writeSdCard(field1: number, field2: number, field3: number): void {
@@ -377,7 +424,7 @@ namespace Plant {
 	// -------------- 6. Write data to serial ----------------
     //% blockId=smarthon_write_serial
     //% block="Write data to computer via serial USB field 1 %field1|field2 %field2|field3 %field3"
-    //% weight=40
+    //% weight=20
     //% blockGap=7
     //%subcategory=More
     export function writeSerial(field1: number, field2: number, field3: number): void {
